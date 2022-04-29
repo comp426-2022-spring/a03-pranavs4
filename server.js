@@ -1,10 +1,11 @@
 // Require Express.js
 //const http = require('http')
+const {application} = require('express');
 const express = require('express');
 const app = express();
 const args = require('minimist')(process.argv.slice(2))
 args['port']
-var HTTP_PORT = args.port ? args.port : 5000;
+const HTTP_PORT = args.port ? args.port : 5000;
 
 // var PORT1 = 5000
 // if(args.PORT1 != null ){
@@ -15,7 +16,7 @@ var HTTP_PORT = args.port ? args.port : 5000;
 
 // Start an app server
 const server = app.listen(HTTP_PORT, () => {
-    console.log('App listening on port %PORT%'.replace('%PORT%', HTTP_PORT))
+    console.log('App is running on port %PORT%'.replace('%PORT%', HTTP_PORT))
 });
 
 app.get('/app/', (req, res) => {
@@ -38,31 +39,31 @@ app.get('/app/', (req, res) => {
 // });
 
 app.get('app/flip/', (req,res) => {
-    res.json({'flip' : coinFlip()});
+    res.statusCode(200).json({"flip" : coinFlip()});
 })
 
 app.get('/app/flips/:number', (req, res) => {
     const flips = coinFlips(req.params.number);
     const summary = countFlips(flips);
-    res.statusCode(200).json({'raw': flips, 'summary': summary});
+    res.statusCode(200).json({"raw": flips, "summary": summary});
 });
 
-// app.get('/app/flip/call/:call', (req,res) => {
-//     const result = flipACoin(req.params.call);
+app.get('/app/flip/call/:call', (req,res) => {
+    const result = flipACoin(req.params.call);
 
-//     // var heads1 = flipACoin("heads");
-//     res.statusCode(200).json(result);
+    // var heads1 = flipACoin("heads");
+    res.statusCode(200).json(result);
+});
+
+// app.get('/app/flip/call/heads', (req,res) => {
+//     const heads = flipACoin("heads");
+//     res.statusCode(200).json(heads);
 // });
 
-app.get('/app/flip/call/heads', (req,res) => {
-    const heads = flipACoin("heads");
-    res.statusCode(200).json(heads);
-});
-
-app.get('/app/flip/call/tails', (req,res) => {
-    var tails = flipACoin("tails");
-    res.statusCode(200).json(tails);
-});
+// app.get('/app/flip/call/tails', (req,res) => {
+//     var tails = flipACoin("tails");
+//     res.statusCode(200).json(tails);
+// });
 
 // Default response for any other request
 app.use(function(req, res){
