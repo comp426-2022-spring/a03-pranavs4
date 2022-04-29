@@ -21,13 +21,13 @@ const server = app.listen(HTTP_PORT, () => {
 
 app.get('/app/', (req, res) => {
     // Respond with status 200
-    //     res.statusCode = 200;
-    // // Respond with status message "OK"
-    //     res.statusMessage = 'OK';
-    //     res.writeHead( res.statusCode, { 'Content-Type' : 'text/plain' });
-    //     res.end(res.statusCode+ ' ' +res.statusMessage);
-    res.status(200).end('OK')
-    res.type('text/plain')
+        res.statusCode = 200;
+    // Respond with status message "OK"
+        res.statusMessage = 'OK';
+        res.writeHead( res.statusCode, { 'Content-Type' : 'text/plain' });
+        res.end(res.statusCode+ ' ' +res.statusMessage);
+    // res.status(200).end('OK')
+    // res.type('text/plain')
 });
 
 // app.get('/app/flip/', (req, res) => {
@@ -36,8 +36,9 @@ app.get('/app/', (req, res) => {
 // });
 
 app.get('app/flip/', (req,res) => {
-    var flip = coinFlip();
-    res.statusCode(200).json({"flip" : flip});
+    const flip = coinFlip();
+    res.statusCode = 200;
+    res.json({"flip" : flip});
 });
 
 // app.get('app/flip/', (req,res) => {
@@ -45,27 +46,30 @@ app.get('app/flip/', (req,res) => {
 // })
 
 app.get('/app/flips/:number', (req, res) => {
-    var flips = coinFlips(req.params.number);
-    var summary = countFlips(flips);
-    res.statusCode(200).json({"raw": flips, "summary": summary});
+    const flips = coinFlips(req.params.number);
+    const summary = countFlips(flips);
+    res.statusCode = 200;
+    res.json({"raw" : flips, "summary" : summary});
+   // res.statusCode(200).json({"raw": flips, "summary": summary});
 });
 
-// app.get('/app/flip/call/:call', (req,res) => {
-//     const result = flipACoin(req.params.call);
+app.get('/app/flip/call/:call', (req,res) => {
+    const result = flipACoin(req.params.call);
 
-//     // var heads1 = flipACoin("heads");
-//     res.statusCode(200).json(result);
+    // var heads1 = flipACoin("heads");
+    res.statusCode = 200;
+    res.json(result);
+});
+
+// app.get('/app/flip/call/heads', (req,res) => {
+//     var heads = flipACoin("heads");
+//     res.statusCode(200).json(heads);
 // });
 
-app.get('/app/flip/call/heads', (req,res) => {
-    var heads = flipACoin("heads");
-    res.statusCode(200).json(heads);
-});
-
-app.get('/app/flip/call/tails', (req,res) => {
-    var tails = flipACoin("tails");
-    res.statusCode(200).json(tails);
-});
+// app.get('/app/flip/call/tails', (req,res) => {
+//     var tails = flipACoin("tails");
+//     res.statusCode(200).json(tails);
+// });
 
 // Default response for any other request
 app.use(function(req, res){
