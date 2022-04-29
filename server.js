@@ -6,7 +6,7 @@ args['PORT1']
 const PORT1 = args.PORT1 || process.env.PORT || 5000
 
 // Start an app server
-const server = app.listen(port, () => {
+const server = app.listen(PORT1, () => {
     console.log('App listening on port %PORT%'.replace('%PORT%', PORT1))
 });
 
