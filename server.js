@@ -1,7 +1,7 @@
 // Require Express.js
 //const http = require('http')
-const express = require('express')
-const app = express()
+const express = require('express');
+const app = express();
 const args = require('minimist')(process.argv.slice(2))
 args['port']
 const HTTP_PORT = args.port ? args.port : 5000;
@@ -24,7 +24,7 @@ app.get('/app/', (req, res) => {
     // Respond with status message "OK"
         res.statusMessage = 'OK';
         res.writeHead( res.statusCode, { 'Content-Type' : 'text/plain' });
-        res.end(res.statusCode+ ' ' +res.statusMessage)
+        res.end(res.statusCode+ ' ' +res.statusMessage);
 });
 
 // app.get('/app/flip/', (req, res) => {
@@ -43,17 +43,17 @@ app.get('/app/flips/:number', (req, res) => {
     res.statusCode(200).json({'raw': flips, 'summary': summary});
 });
 
-app.get('/app/flip/call/heads', (req,res) => {
-    var result = flipACoin(req.params.call);
+app.get('/app/flip/call/:call', (req,res) => {
+    const result = flipACoin(req.params.call);
 
     // var heads1 = flipACoin("heads");
     res.statusCode(200).json(result);
 });
 
-app.get('/app/flip/call/tails', (req,res) => {
-    var tails1 = flipACoin("tails");
-    res.status(200).json(tails1);
-});
+// app.get('/app/flip/call/tails', (req,res) => {
+//     var tails1 = flipACoin("tails");
+//     res.status(200).json(tails1);
+// });
 
 // Default response for any other request
 app.use(function(req, res){
