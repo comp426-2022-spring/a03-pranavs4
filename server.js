@@ -56,14 +56,12 @@ app.get('/app/flip/call/heads', (req,res) => {
     var heads = flipACoin("heads");
     res.statusCode = 200;
     res.json(heads);
-    //res.statusCode(200).json(heads);
 });
 
 app.get('/app/flip/call/tails', (req,res) => {
     var tails = flipACoin("tails");
     res.statusCode = 200;
     res.json(tails);
-    //res.statusCode(200).json(tails);
 });
 
 // Default response for any other request
@@ -165,17 +163,17 @@ app.use(function(req, res){
   
   function flipACoin(call) {
   
-    // var results = coinFlip();
-    // if(results == call) {
-    //   return{ call:call, flip: results, results : "win"}
-    // }
-    // else {
-    //   return{call:call, flip:results, results:"lose"}
-    // };
+    var results = coinFlip();
+    if(results == call) {
+      return{ call:call, flip: results, results : "win"}
+    }
+    else {
+      return{call:call, flip:results, results:"lose"}
+    };
 
-    let results = {call: call, flip: "", result: ""};
-    results.flip = coinFlip();
-    results.result = results.flip === call ? "win" : "lose";
-    return results; 
+    // let results = {call: call, flip: "", result: ""};
+    // results.flip = coinFlip();
+    // results.result = results.flip === call ? "win" : "lose";
+    // return results; 
   }
 
