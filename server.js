@@ -2,12 +2,12 @@
 const express = require('express')
 const app = express()
 const args = require('minimist')(process.argv.slice(2))
-args['port']
-const port = args.port || process.env.PORT || 5000
+args['PORT1']
+const PORT1 = args.PORT1 || process.env.PORT || 5000
 
 // Start an app server
 const server = app.listen(port, () => {
-    console.log('App listening on port %PORT%'.replace('%PORT%',HTTP_PORT))
+    console.log('App listening on port %PORT%'.replace('%PORT%', PORT1))
 });
 
 /** Coin flip functions 
