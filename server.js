@@ -8,7 +8,8 @@ args['PORT1']
 var PORT1 = 5000
 if(args.PORT1 != null ){
     
-    const PORT1 = args.PORT1 || process.env.PORT
+    const PORT1 = args.PORT1 
+    // || process.env.PORT
     
 }
 
