@@ -38,14 +38,16 @@ app.get('app/flip/', (req,res) => {
 });
 
 app.get('/app/flips/:number', (req, res) => {
-    var flipCount = coinFlips(req.params.number);
-    var summary = countFlips(flipCount);
-    res.statusCode(200).json({'raw': flipCount, 'summary':countFlips(flipCount)});
+    var flips = coinFlips(req.params.number);
+    var summary = countFlips(flips);
+    res.statusCode(200).json({'raw': flips, 'summary': summary);
 });
 
 app.get('/app/flip/call/heads', (req,res) => {
-    var heads1 = flipACoin("heads");
-    res.status(200).json(heads1);
+    var result = flipACoin(req.params.call);
+
+    // var heads1 = flipACoin("heads");
+    res.statusCode(200).json(result);
 });
 
 app.get('/app/flip/call/tails', (req,res) => {
