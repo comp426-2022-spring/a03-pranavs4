@@ -4,7 +4,7 @@
   "description": "Flipper of the coins in an API",
   "main": "server.js",
   "scripts": {
-    "test": "node server.js --port=5555",
+    "test": "node server.js --port=5000",
     "start": "node server.js"
   },
   "repository": {
