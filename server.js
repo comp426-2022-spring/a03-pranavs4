@@ -21,16 +21,16 @@ app.get('/app/', (req, res) => {
     
 });
 
-// app.get('/app/flip/', (req, res) => {
-//     res.status(200).json({'flip' : coinFlip()});
-//     res.writeHead(res.statusCode, {'Content-Type' : 'application/json'});
-// });
-
-app.get('app/flip/', (req,res) => {
-    const flip = coinFlip();
-    res.statusCode = 200;
-    res.json({"flip" : flip});
+app.get('/app/flip/', (req, res) => {
+    res.status(200).json({'flip' : coinFlip()});
+    res.writeHead(res.statusCode, {'Content-Type' : 'application/json'});
 });
+
+// app.get('app/flip/', (req,res) => {
+//     const flip = coinFlip();
+//     res.statusCode = 200;
+//     res.json({"flip" : flip});
+// });
 
 // app.get('app/flip/', (req,res) => {
 //     res.statusCode(200).json({"flip" : coinFlip()});
