@@ -27,14 +27,20 @@ app.get('/app/', (req, res) => {
         res.end(res.statusCode+ ' ' +res.statusMessage)
 });
 
-app.get('/app/flip/', (req, res) => {
-    res.status(200).json({'flip' : coinFlip()});
-    res.writeHead(res.statusCode, {'Content-Type' : 'application/json'});
+// app.get('/app/flip/', (req, res) => {
+//     res.status(200).json({'flip' : coinFlip()});
+//     res.writeHead(res.statusCode, {'Content-Type' : 'application/json'});
+// });
+
+app.get('app/flip/', (req,res) => {
+    var flips1 = coinFlip();
+    res.statusCode(200).json({"flip" : flips1});
 });
 
 app.get('/app/flips/:number', (req, res) => {
     var flipCount = coinFlips(req.params.number);
-    res.status(200).json({'raw': flips, 'summary':countFlips(flipCount)});
+    var summary = countFlips(flipCount);
+    res.statusCode(200).json({'raw': flipCount, 'summary':countFlips(flipCount)});
 });
 
 app.get('/app/flip/call/heads', (req,res) => {
