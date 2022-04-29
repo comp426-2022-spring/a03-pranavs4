@@ -33,14 +33,14 @@ app.get('/app/', (req, res) => {
 // });
 
 app.get('app/flip/', (req,res) => {
-    var flips1 = coinFlip();
+    const flips1 = coinFlip();
     res.statusCode(200).json({"flip" : flips1});
 });
 
 app.get('/app/flips/:number', (req, res) => {
-    var flips = coinFlips(req.params.number);
-    var summary = countFlips(flips);
-    res.statusCode(200).json({'raw': flips, 'summary': summary);
+    const flips = coinFlips(req.params.number);
+    const summary = countFlips(flips);
+    res.statusCode(200).json({'raw': flips, 'summary': summary});
 });
 
 app.get('/app/flip/call/heads', (req,res) => {
