@@ -1,20 +1,21 @@
 // Require Express.js
-const http = require('http')
+//const http = require('http')
 const express = require('express')
 const app = express()
 const args = require('minimist')(process.argv.slice(2))
-args['PORT1']
+args['port']
+const HTTP_PORT = args.port ? args.port : 5000;
 
-var PORT1 = 5000
-if(args.PORT1 != null ){
+// var PORT1 = 5000
+// if(args.PORT1 != null ){
     
-    PORT1 = args.PORT1 || process.env.PORT
+//     PORT1 = args.PORT1 || process.env.PORT
     
-}
+// }
 
 // Start an app server
-const server = app.listen(PORT1, () => {
-    console.log('App running on port %PORT%'.replace('%PORT%', PORT1))
+const server = app.listen(HTTP_PORT, () => {
+    console.log('App listening on port %PORT%'.replace('%PORT%', HTTP_PORT))
 });
 
 // Default response for any other request
