@@ -4,7 +4,7 @@ const express = require('express');
 const app = express();
 const args = require('minimist')(process.argv.slice(2))
 args['port']
-const HTTP_PORT = args.port ? args.port : 5000;
+var HTTP_PORT = args.port ? args.port : 5000;
 
 // var PORT1 = 5000
 // if(args.PORT1 != null ){
@@ -32,10 +32,14 @@ app.get('/app/', (req, res) => {
 //     res.writeHead(res.statusCode, {'Content-Type' : 'application/json'});
 // });
 
+// app.get('app/flip/', (req,res) => {
+//     const flips1 = coinFlip();
+//     res.statusCode(200).json({"flip" : flips1});
+// });
+
 app.get('app/flip/', (req,res) => {
-    const flips1 = coinFlip();
-    res.statusCode(200).json({"flip" : flips1});
-});
+    res.json({'flip' : coinFlip()});
+})
 
 app.get('/app/flips/:number', (req, res) => {
     const flips = coinFlips(req.params.number);
@@ -43,22 +47,27 @@ app.get('/app/flips/:number', (req, res) => {
     res.statusCode(200).json({'raw': flips, 'summary': summary});
 });
 
-app.get('/app/flip/call/:call', (req,res) => {
-    const result = flipACoin(req.params.call);
+// app.get('/app/flip/call/:call', (req,res) => {
+//     const result = flipACoin(req.params.call);
 
-    // var heads1 = flipACoin("heads");
-    res.statusCode(200).json(result);
+//     // var heads1 = flipACoin("heads");
+//     res.statusCode(200).json(result);
+// });
+
+app.get('/app/flip/call/heads', (req,res) => {
+    const heads = flipACoin("heads");
+    res.statusCode(200).json(heads);
 });
 
-// app.get('/app/flip/call/tails', (req,res) => {
-//     var tails1 = flipACoin("tails");
-//     res.status(200).json(tails1);
-// });
+app.get('/app/flip/call/tails', (req,res) => {
+    var tails = flipACoin("tails");
+    res.statusCode(200).json(tails);
+});
 
 // Default response for any other request
 app.use(function(req, res){
-    res.status(404).send('404 NOT FOUND')
-    res.type("text/plain")
+    res.status(404).send('404 NOT FOUND');
+    res.type("text/plain");
 });
 
 /** Coin flip functions 
