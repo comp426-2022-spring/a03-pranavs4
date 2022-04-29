@@ -149,17 +149,17 @@ app.get('/app/flip/', (req, res) => {
 app.get('/app/flips/:number', (req, res) => {
     var flipCount = coinFlips(req.params.number);
     res.json({'raw': flips, 'summary':countFlips(flipCount)})
-} )
+});
 
 app.get('/app/flip/call/heads', (req,res) => {
     var heads1 = flipACoin("heads");
     res.status(200).json(heads1);
-})
+});
 
 app.get('/app/flip/call/tails', (req,res) => {
     var tails1 = flipACoin("heads");
     res.status(200).json(tails1);
-})
+});
 
 
 app.get('/app/', (req, res) => {
