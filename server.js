@@ -1,13 +1,20 @@
 // Require Express.js
+const http = require('http')
 const express = require('express')
 const app = express()
 const args = require('minimist')(process.argv.slice(2))
 args['PORT1']
-const PORT1 = args.PORT1 || process.env.PORT || 5000
+
+var PORT1 = 5000
+if(args.PORT1 != null ){
+    
+    const PORT1 = args.PORT1 || process.env.PORT
+    
+}
 
 // Start an app server
 const server = app.listen(PORT1, () => {
-    console.log('App listening on port %PORT%'.replace('%PORT%', PORT1))
+    console.log('App running on port %PORT%'.replace('%PORT%', PORT1))
 });
 
 // Default response for any other request
@@ -25,12 +32,13 @@ app.get('/app/', (req, res) => {
 });
 
 app.get('/app/flip/', (req, res) => {
-    res.status(200).json({'flip' : coinFlip()})
+    res.status(200).json({'flip' : coinFlip()});
+    res.writeHead(res.statusCode, {'Content-Type' : 'application/json'});
 });
 
 app.get('/app/flips/:number', (req, res) => {
     var flipCount = coinFlips(req.params.number);
-    res.json({'raw': flips, 'summary':countFlips(flipCount)});
+    res.status(200).json({'raw': flips, 'summary':countFlips(flipCount)});
 });
 
 app.get('/app/flip/call/heads', (req,res) => {
