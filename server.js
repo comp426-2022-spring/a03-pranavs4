@@ -163,17 +163,17 @@ app.use(function(req, res){
   
   function flipACoin(call) {
   
-    var results = coinFlip();
-    if(results == call) {
-      return{ call:call, flip: results, results : "win"}
-    }
-    else {
-      return{call:call, flip:results, results:"lose"}
-    };
+    // var results = coinFlip();
+    // if(results == call) {
+    //   return{ call:call, flip: results, results : "win"}
+    // }
+    // else {
+    //   return{call:call, flip:results, results:"lose"}
+    // };
 
-    // let results = {call: call, flip: "", result: ""};
-    // results.flip = coinFlip();
-    // results.result = results.flip === call ? "win" : "lose";
-    // return results; 
+    let results = {call: call, flip: "", result: ""};
+    results.flip = coinFlip();
+    results.result = results.flip === call ? "win" : "lose";
+    return results; 
   }
 
