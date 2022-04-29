@@ -48,9 +48,9 @@ app.get('app/flip/', (req,res) => {
 app.get('/app/flips/:number', (req, res) => {
     const flips = coinFlips(req.params.number);
     const summary = countFlips(flips);
-    // res.statusCode = 200;
-    // res.json({"raw" : flips, "summary" : summary});
-   res.statusCode(200).json({"raw": flips, "summary": summary});
+    res.statusCode = 200;
+    res.json({"raw" : flips, "summary" : summary});
+   //res.statusCode(200).json({"raw": flips, "summary": summary});
 });
 
 app.get('/app/flip/call/:call', (req,res) => {
@@ -106,8 +106,9 @@ app.use(function(req, res){
     //   return "tails";
     // }
     // // return outcome;
-  
-    return (Math.random() < 0.5 ? 'heads' : 'tails');  
+    random = Math.random * 2;
+    return random <=1 ? "heads" : "tails";
+    //return (Math.random() < 0.5 ? 'heads' : 'tails');  
   }
   
   //console.log(coinFlip))
