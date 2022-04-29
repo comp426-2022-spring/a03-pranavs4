@@ -166,19 +166,39 @@ app.use(function(req, res){
   
   function countFlips(array) {
   
-    var headCount = 0; 
-    var tailCount = 0;
+    // var headCount = 0; 
+    // var tailCount = 0;
   
-    for(var x = 0; x < array.length; x++) {
-      if(array[x] == "tails"){
-        tailCount ++;
-      } else {
-        headCount ++;
-      }
+    // for(var x = 0; x < array.length; x++) {
+    //   if(array[x] == "tails"){
+    //     tailCount ++;
+    //   } else {
+    //     headCount ++;
+    //   }
+    // }
+    // return {
+    //   "heads": headCount,
+    //   "tails": tailCount
+    // }
+
+    let heads = 0;
+    let tails = 0;
+
+    for(var x = 0; x < array.length; x++){
+        array[x] == "heads" ? heads++ : tails++
     }
-    return {
-      "heads": headCount,
-      "tails": tailCount
+    if(tails == 0) {
+        return {
+            heads : heads
+        };
+    } else if(heads == 0) {
+        return {
+            tails : tails
+        };
+    } else {
+        return {
+            heads: heads, tails: tails
+        };
     }
   }
   
