@@ -18,12 +18,6 @@ const server = app.listen(HTTP_PORT, () => {
     console.log('App listening on port %PORT%'.replace('%PORT%', HTTP_PORT))
 });
 
-// Default response for any other request
-app.use(function(req, res){
-    res.status(404).send('404 NOT FOUND')
-    res.type("text/plan")
-});
-
 app.get('/app/', (req, res) => {
     // Respond with status 200
         res.statusCode = 200;
@@ -51,6 +45,12 @@ app.get('/app/flip/call/heads', (req,res) => {
 app.get('/app/flip/call/tails', (req,res) => {
     var tails1 = flipACoin("tails");
     res.status(200).json(tails1);
+});
+
+// Default response for any other request
+app.use(function(req, res){
+    res.status(404).send('404 NOT FOUND')
+    res.type("text/plan")
 });
 
 /** Coin flip functions 
