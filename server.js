@@ -6,7 +6,7 @@ args['port']
 const port = args.port || process.env.PORT || 5000
 
 // Start an app server
-const server = app.listen(HTTP_PORT, () => {
+const server = app.listen(port, () => {
     console.log('App listening on port %PORT%'.replace('%PORT%',HTTP_PORT))
 });
 
@@ -137,18 +137,22 @@ const server = app.listen(HTTP_PORT, () => {
     };
   }
 
-// Default response for any other request
-app.use(function(req, res){
-    res.status(404).send('404 NOT FOUND')
+app.get('/app/', (req, res) => {
+    // Respond with status 200
+        res.statusCode = 200;
+    // Respond with status message "OK"
+        res.statusMessage = 'OK';
+        res.writeHead( res.statusCode, { 'Content-Type' : 'text/plain' });
+        res.end(res.statusCode+ ' ' +res.statusMessage)
 });
 
 app.get('/app/flip/', (req, res) => {
-    res.status(200).json({'flip' : coinFlip})
+    res.status(200).json({'flip' : coinFlip()})
 });
 
 app.get('/app/flips/:number', (req, res) => {
     var flipCount = coinFlips(req.params.number);
-    res.json({'raw': flips, 'summary':countFlips(flipCount)})
+    res.json({'raw': flips, 'summary':countFlips(flipCount)});
 });
 
 app.get('/app/flip/call/heads', (req,res) => {
@@ -161,13 +165,8 @@ app.get('/app/flip/call/tails', (req,res) => {
     res.status(200).json(tails1);
 });
 
-
-app.get('/app/', (req, res) => {
-    // Respond with status 200
-        res.statusCode = 200;
-    // Respond with status message "OK"
-        res.statusMessage = 'OK';
-        res.writeHead( res.statusCode, { 'Content-Type' : 'text/plain' });
-        res.end(res.statusCode+ ' ' +res.statusMessage)
+// Default response for any other request
+app.use(function(req, res){
+    res.status(404).send('404 NOT FOUND')
 });
 
