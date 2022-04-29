@@ -89,8 +89,8 @@ app.use(function(req, res){
     //   return "tails";
     // }
     // // return outcome;
-    // random = Math.random * 2;
-    return Math.random * 2 >=1 ? "heads" : "tails";
+    let random = Math.random * 2;
+    return random >=1 ? "heads" : "tails";
     //return (Math.random() < 0.5 ? 'heads' : 'tails');  
   }
   
@@ -101,7 +101,7 @@ app.use(function(req, res){
   
   function coinFlips(flips) {
   
-    const flipArray = [];
+    let flipArray = [];
   
     for(var x = 0; x < flips; x++) {
     //   let flip1 = Math.random();
