@@ -107,7 +107,7 @@ app.use(function(req, res){
     // }
     // // return outcome;
     random = Math.random * 2;
-    return random <=1 ? "heads" : "tails";
+    return random >=1 ? "heads" : "tails";
     //return (Math.random() < 0.5 ? 'heads' : 'tails');  
   }
   
