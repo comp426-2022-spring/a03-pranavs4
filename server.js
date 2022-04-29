@@ -21,6 +21,7 @@ const server = app.listen(PORT1, () => {
 // Default response for any other request
 app.use(function(req, res){
     res.status(404).send('404 NOT FOUND')
+    res.type("text/plan")
 });
 
 app.get('/app/', (req, res) => {
