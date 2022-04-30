@@ -145,11 +145,11 @@ app.use(function(req, res){
         array[x] == "heads" ? headsCount++ : tailsCount++
     
     }
-    if(tails == 0) {
+    if(tailsCount == 0) {
         return {
             heads : headsCount
         };
-    } else if(heads == 0) {
+    } else if(headsCount == 0) {
         return {
             tails : tailsCount
         };
