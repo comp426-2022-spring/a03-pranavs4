@@ -137,23 +137,25 @@ app.use(function(req, res){
     //   "tails": tailCount
     // }
 
-    let heads = 0;
-    let tails = 0;
+    let headsCount = 0;
+    let tailsCount = 0;
 
     for(var x = 0; x < array.length; x++){
-        array[x] == "heads" ? heads++ : tails++
+        
+        array[x] == "heads" ? headsCount++ : tailsCount++
+    
     }
     if(tails == 0) {
         return {
-            heads : heads
+            heads : headsCount
         };
     } else if(heads == 0) {
         return {
-            tails : tails
+            tails : tailsCount
         };
     } else {
         return {
-            heads: heads, tails: tails
+            heads: headsCount, tails: tailsCount
         };
     }
   }
@@ -173,7 +175,12 @@ app.use(function(req, res){
 
     let results = {call: call, flip: "", result: ""};
     results.flip = coinFlip();
-    results.result = results.flip === call ? "win" : "lose";
+    callCheck();
     return results; 
+
+
+      function callCheck() {
+          results.result = results.flip === call ? "win" : "lose";
+      }
   }
 
